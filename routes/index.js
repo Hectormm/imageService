@@ -14,33 +14,32 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/imagen', function(req, res, next) {
- 		res.header("Access-Control-Allow-Origin", "*");
 
-if(typeof req.query.texto !== "undefined"){
-	var texto = req.query.texto;
+	if(typeof req.query.texto !== "undefined"){
+		var texto = req.query.texto;
 
-	Flickr.tokenOnly(flickrOptions, function(error, flickr) {
-	  	flickr.photos.search({
-		  text: texto,
-		  extras: "url_o",
-		  license: "3",
-		  sort: "relevance",
-		  privacy_filter: "1",
-		  media: "photos"
-		}, function(err, result) {
-		  if(err) {
-		  	throw new Error(err); 
-		  }
-		  else{
-		  	console.log(result.photos.photo[0].url_o);
-			res.status(200).json({busqueda: texto, urlResultado: result.photos.photo[0].url_o});
-		  }
+		Flickr.tokenOnly(flickrOptions, function(error, flickr) {
+		  	flickr.photos.search({
+			  text: texto,
+			  extras: "url_o",
+			  license: "3",
+			  sort: "relevance",
+			  privacy_filter: "1",
+			  media: "photos"
+			}, function(err, result) {
+			  if(err) {
+			  	throw new Error(err); 
+			  }
+			  else{
+			  	console.log(result.photos.photo[0].url_o);
+				res.status(200).json({busqueda: texto, urlResultado: result.photos.photo[0].url_o});
+			  }
+			});
 		});
-	});
-}
-else{
-	res.status(200).json({busqueda: "", urlResultado: ""});
-}
+	}
+	else{
+		res.status(200).json({busqueda: "", urlResultado: ""});
+	}
 
 
 
