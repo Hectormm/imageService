@@ -20,7 +20,6 @@ router.get('/imagen', function(req, res) {
 		      secret: "00886f335bade905"
 		    };
 
-
 		Flickr.tokenOnly(flickrOptions, function(error, flickr) {
 		  	flickr.photos.search({
 			  text: texto,
@@ -30,13 +29,8 @@ router.get('/imagen', function(req, res) {
 			  privacy_filter: "1",
 			  media: "photos"
 			}, function(err, result) {
-			  if(err) {
-   				res.status(500).send({ error: 'Something blew up!' });
-			  }
-			  else{
 			  	console.log(result.photos.photo[0].url_o);
 				res.status(200).json({busqueda: texto, urlResultado: result.photos.photo[0].url_o});
-			  }
 			});
 		});
 	}
