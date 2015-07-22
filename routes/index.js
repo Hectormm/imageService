@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/imagen', function(req, res, next) {
+ 		res.header("Access-Control-Allow-Origin", "*");
 
 if(typeof req.query.texto !== "undefined"){
 	var texto = req.query.texto;
