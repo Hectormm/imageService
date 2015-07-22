@@ -45,5 +45,26 @@ router.get('/imagen', function(req, res) {
 
 });
 
+router.get('/imagenGoogle', function(req, res) {
+ 	res.header("Access-Control-Allow-Origin", "*");
+
+	if(typeof req.query.texto !== "undefined"){
+		var texto = req.query.texto;
+		var fotology = require("fotology");
+
+		fotology(texto, function (imageURLs) {
+		    res.status(200).json({busqueda: texto, urlResultado: imageURLs[0]});
+		});
+
+	}
+	else{
+		res.status(200).json({busqueda: "", urlResultado: ""});
+	}
+
+
+
+
+});
+
 
 module.exports = router;
