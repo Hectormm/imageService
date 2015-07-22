@@ -19,6 +19,8 @@ router.get('/imagen', function(req, res) {
 		      api_key: "27f6eee06f90092ae13f6393f5dc49e3",
 		      secret: "00886f335bade905"
 		    };
+		
+		Flickr.authenticate(flickrOptions, Flickr.downsync());
 
 		Flickr.tokenOnly(flickrOptions, function(error, flickr) {
 		  	flickr.photos.search({
