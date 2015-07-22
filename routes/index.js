@@ -1,10 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Flickr = require("flickrapi"),
-    flickrOptions = {
-      api_key: "27f6eee06f90092ae13f6393f5dc49e3",
-      secret: "00886f335bade905"
-    };
 
 
 /* GET home page. */
@@ -18,6 +13,13 @@ router.get('/imagen', function(req, res) {
 
 	if(typeof req.query.texto !== "undefined"){
 		var texto = req.query.texto;
+
+		var Flickr = require("flickrapi"),
+		    flickrOptions = {
+		      api_key: "27f6eee06f90092ae13f6393f5dc49e3",
+		      secret: "00886f335bade905"
+		    };
+
 
 		Flickr.tokenOnly(flickrOptions, function(error, flickr) {
 		  	flickr.photos.search({
