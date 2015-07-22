@@ -29,7 +29,7 @@ router.get('/imagen', function(req, res) {
 			  media: "photos"
 			}, function(err, result) {
 			  if(err) {
-			  	throw new Error(err); 
+   				res.status(500).send({ error: 'Something blew up!' });
 			  }
 			  else{
 			  	console.log(result.photos.photo[0].url_o);
